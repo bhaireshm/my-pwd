@@ -1,0 +1,31 @@
+{
+  "name": "my-pwd",
+  "version": "1.0.0",
+  "description": "my custom password manager",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bhaireshm/my-pwd.git"
+  },
+  "keywords": [
+    "password",
+    "authenticator"
+  ],
+  "author": "Bhairesh M",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bhaireshm/my-pwd/issues"
+  },
+  "homepage": "https://github.com/bhaireshm/my-pwd#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "firebase": "^8.4.1",
+    "nodemon": "^2.0.7"
+  }
+}
