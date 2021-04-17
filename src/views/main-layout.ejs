@@ -1,0 +1,82 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/navbar.ejs') %>
+<style>
+    .list-group-item {
+        padding: 10px;
+    }
+</style>
+
+<main>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-6">
+                <div class="card my-4">
+                    <div class="card-header">
+                        <span class="float-end">
+                            <i class="fa fa-refresh" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <!-- <div class="list-group list-group-flush">
+                            make it as clickable so it can be modified/deleted
+                            <a href="javascript:void(0);" class="list-group-item list-group-item-action">
+                                <span id="website-name">A third link item</span>
+                                <span id="website-name">A third link item</span>
+                                <div class="btn-group  float-end">
+                                    <button class="btn btn-sm btn-primary" type="button">view</button>
+                                    <button class="btn btn-sm btn-primary" type="button">edit</button>
+                                    <button class="btn btn-sm btn-primary" type="button">delete</button>
+                                </div>
+                            </a>
+                        </div> -->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Cras justo odio
+                                </div>
+                                <div class="float-end mt-2">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button"><i
+                                            class="fa fa-key"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"><i
+                                            class="fa fa-trash"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Cras justo odio
+                                </div>
+                                <div class="float-end mt-2">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button"><i
+                                            class="fa fa-key"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"><i
+                                            class="fa fa-trash"></i></button>
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-start">
+                                <div class="ms-2 me-auto">
+                                    <div class="fw-bold">Subheading</div>
+                                    Cras justo odio
+                                </div>
+                                <div class="float-end mt-2">
+                                    <button class="btn btn-sm btn-outline-secondary" type="button"><i
+                                            class="fa fa-key"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" type="button"><i
+                                            class="fa fa-trash"></i></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- <div class="card-footer">
+                        Card footer
+                    </div> -->
+                </div>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+</main>
+
+<%- include('includes/footer.ejs') -%>

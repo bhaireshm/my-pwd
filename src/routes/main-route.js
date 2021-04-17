@@ -1,12 +1,14 @@
 const express = require("express");
+const { homePage, notFoundPage } = require("../controllers/landing-controller");
 const authRoutes = require("./auth-route");
-const { log } = require("../helper/logger");
-
 const router = express.Router();
-router.use(authRoutes);
 
-router.get("/", (req, res) => {
-  res.send("Home Page rendering");
-});
+// Pages
+router.use("/auth", authRoutes.pageRouter);
+router.get("/", homePage);
+router.get("/**", notFoundPage);
+
+// APIs
+router.use("/api", authRoutes.apiRouter);
 
 module.exports = router;

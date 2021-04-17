@@ -1,11 +1,18 @@
 const express = require("express");
-const router = express.Router();
+const pageRouter = express.Router();
+const apiRouter = express.Router();
+const {
+  loginPage,
+  registerPage,
+  login,
+} = require("../controllers/auth-controller");
 
-router.get("/login", (req, res) => {
-  res.send("Login Page");
-});
-router.get("/register", (req, res) => {
-  res.send("Register Page");
-});
+pageRouter.get("/login", loginPage);
+pageRouter.get("/register", registerPage);
 
-module.exports = router;
+apiRouter.post("/login", login);
+
+module.exports = {
+  pageRouter,
+  apiRouter,
+};

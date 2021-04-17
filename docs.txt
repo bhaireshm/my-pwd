@@ -1,0 +1,14 @@
+# Formats
+
+user = {
+    name: '',
+    email: '',
+    password: '',
+    mpin: ''
+}
+
+website = {
+    name: '',
+    url: '',
+    password: ''
+}
