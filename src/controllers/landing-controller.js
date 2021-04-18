@@ -1,7 +1,7 @@
 exports.homePage = (req, res) => {
-  res.render("main-layout", { pageTitle: "Home", isLoggedIn: true });
+  res.render("main-layout", { pageTitle: "Home" });
 };
 
 exports.notFoundPage = (req, res) => {
-  res.render("404", { pageTitle: "Page not found", isLoggedIn: true });
+  res.render("404", { pageTitle: "Page not found" });
 };

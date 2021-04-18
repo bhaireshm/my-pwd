@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const mainRoutes = require("./src/routes/main-route");
-const config = require("./src/config");
+const config = require("./src/helper/config");
 const { log } = require("./src/helper/logger");
 
 const app = express();

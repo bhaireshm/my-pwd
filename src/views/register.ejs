@@ -1,5 +1,8 @@
 <%- include('includes/head.ejs') -%>
 
+<!-- <meta name="google-signin-client_id" content="191208849030-a9fprj8njieajslb9fh4qbv9in9njvmn.apps.googleusercontent.com">
+<script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
 <div class="form-signin-container">
     <main class="form-signin card shadow-sm my-4">
         <form class="text-center" action="/api/register" method="POST">
@@ -18,11 +21,19 @@
                 <input type="password" class="form-control" id="password" name="password" placeholder="Password">
                 <label for="password">Password</label>
             </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="mpin" name="mpin" placeholder="MPIN">
+                <label for="mpin">MPIN</label>
+            </div>
             <button class="w-100 btn btn-sm btn-primary" type="submit">Register</button>
             <div class="my-2 p-1 auth-links">
                 <span class="float-end"><a class="text-decoration-none" href="/auth/login">Login</a></span>
             </div>
         </form>
+        <hr class="my-2">
+        <!-- <div class="text-center">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div> -->
     </main>
 </div>
 

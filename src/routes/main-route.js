@@ -8,7 +8,7 @@ router.use("/auth", authRoutes.pageRouter);
 router.get("/", homePage);
 router.get("/**", notFoundPage);
 
-// APIs
+// API
 router.use("/api", authRoutes.apiRouter);
 
 module.exports = router;

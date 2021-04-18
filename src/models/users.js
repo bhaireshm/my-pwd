@@ -1,4 +1,6 @@
-var users = [];
+const { encrypt } = require("../services/encryption-service");
+const request = require("request");
+const config = require("../helper/config");
 
 module.exports = class User {
   constructor(user) {
@@ -6,8 +8,17 @@ module.exports = class User {
   }
 
   addUser() {
-    users.push(this); // this keyword has user data
-    console.log(users);
+    console.log("users controller", users);
+
+    // users.password = encrypt(users.password);
+    // users.mpin = encrypt(users.mpin);
+
+    // request.post(
+    //   { url: config.fbdburl + "/users.json", form: JSON.stringify(users) },
+    //   function (err, httpResponse, body) {
+    //     console.log(body);
+    //   }
+    // );
   }
 
   fetchUsers() {
