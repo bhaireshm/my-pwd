@@ -16,31 +16,30 @@ exports.registerPage = (req, res) => {
   res.render("register", { pageTitle: "Register" });
 };
 
+exports.forgotPasswordPage = (req, res) => {
+  res.render("forgot-password", { pageTitle: "Reset Password" });
+};
+
 // APIs
 exports.login = (req, res) => {
-  var data = {},
-    user = {};
+  var userData = {};
 
-  // req.headers["Content-Type"] = "application/json";
-
-  firebase.storage.UpdateMetaData({
-    contentType: "application/json",
-  });
-  
   firebase
     .auth()
     .signInWithEmailAndPassword(req.body.email, req.body.password)
     .then((userCredential) => {
       // Signed in
-      // data = getUserData(userCredential);
-      data = { ...userCredential.user };
+      // userData = { ...userCredential };
+      userData = getUserData(userCredential);
+      userData = formatResponse(userData, "User Logged in succesfully", true);
 
-      req.headers["Content-Type"] = "application/json";
       res.json(data);
+      // res.render("home", { ...userData, pageTitle: "Home" });
     })
     .catch((error) => {
-      data = sendError(error, user);
-      res.status(400).send(data);
+      userData = sendError(error);
+      res.status(400).send(userData);
+      // res.render("login", { ...data, pageTitle: "title" });
     });
 };
 
@@ -54,74 +53,58 @@ exports.registerUser = (req, res) => {
     .then((userCredential) => {
       // Registered and Signed in
       data = { ...user, ...userCredential };
+      data = formatResponse(data, "Account Created Successfully", true);
+
+      // call login method to login
       res.json(data);
+      // res.render("home", { ...data, pageTitle: "Home" });
     })
     .catch((error) => {
-      data = sendError(error, user);
+      data = sendError(error);
       res.status(400).json(data);
     });
 };
 
 exports.resetPassword = (req, res) => {
-  var auth = firebase.auth();
-  var emailAddress = req.body.email;
+  var emailAddress = req.body.email,
+    data = {};
 
-  auth
+  firebase
+    .auth()
     .sendPasswordResetEmail(emailAddress)
     .then(function (d) {
       // Email sent.
-      console.log(d);
+      data = formatResponse(null, "Email sent", true);
+      res.send(data);
+      // res.render("login", { ...data, pageTitle: "Login" });
     })
     .catch(function (error) {
-      // An error happened.
-      console.log(error);
+      data = formatResponse(error, "Password reset failed", false);
+      res.status(400).send(data);
     });
 };
 
-function sendError(error, user) {
-  var errorMessage = { status: error.code, message: error.message };
-  return { ...user, ...errorMessage };
+function sendError(error) {
+  return formatResponse(null, error.message, false, error.code);
 }
 
 function getUserData(userCredential) {
   let user = {};
   user["uid"] = userCredential.user.uid;
   user["email"] = userCredential.user.email;
+  user["refreshToken"] = userCredential.user.refreshToken;
+  user["displayName"] = userCredential.user.displayName;
+  user["lastLoginAt"] = userCredential.user.metadata.lastSignInTime;
   // user["token"] = userCredential.user.stsTokenManager.accessToken;
-  user["refreshToken"] = userCredential.user.stsTokenManager.refreshToken;
-  user["expirationTime"] = userCredential.user.stsTokenManager.expirationTime;
-  user["lastLoginAt"] = userCredential.user.stsTokenManager.lastLoginAt;
+  // user["expirationTime"] = userCredential.user.stsTokenManager.expirationTime;
   return user;
 }
 
-function handleError(errRes) {
-  let errMessage;
-  if (!errRes.error || !errRes.error.error) {
-    return throwError(errMessage);
-  }
-
-  switch (errRes.error.error.message) {
-    case "EMAIL_EXISTS":
-      errMessage = "The email address is already in use by another account !!";
-      break;
-    case "OPERATION_NOT_ALLOWED":
-      errMessage = "Password sign-in is disabled for this project.";
-      break;
-    case "TOO_MANY_ATTEMPTS_TRY_LATER":
-      errMessage =
-        "We have blocked all requests from this device due to unusual activity. Try again later.";
-      break;
-    case "EMAIL_NOT_FOUND":
-      errMessage =
-        "Email not found / There is no user record corresponding to this identifier. The user may have been deleted.";
-      break;
-    case "INVALID_PASSWORD":
-      errMessage =
-        "The password is invalid or the user does not have a password.";
-      break;
-    default:
-      errMessage = "An unknown error occured!!";
-  }
-
-  return throwError(errMessage);
+function formatResponse(d, m, s, c = 200) {
+  return {
+    status: s,
+    data: d,
+    message: m,
+    statusCode: c,
+  };
 }
