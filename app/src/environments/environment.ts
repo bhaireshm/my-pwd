@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  encryptionKey: 'bhairesh',
+  appName: 'PassBook',
+  baseUrl: 'http://localhost:3215/api',
+  UI: 'http://localhost:3215/'
 };
 
 /*

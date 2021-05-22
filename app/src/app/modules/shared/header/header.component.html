@@ -1,13 +1,13 @@
 <nav class="navbar navbar-dark bg-light">
   <div class="container-fluid">
-    <a href="/" class="navbar-brand">
+    <a routerLink="/" class="navbar-brand">
       <img src="assets/img/logo.png" alt="Logo" width="35px" height="35px">
     </a>
     <div class="d-flex">
-      <a *ngIf="user !== null" href="#" class="btn btn-sm btn-success me-2" type="button">{{ user.data.email }}</a>
+      <a *ngIf="user !== null" routerLink="#" class="btn btn-sm btn-success me-2" type="button">{{ user.data.email }}</a>
 
-      <a href="/auth/login" class="btn btn-sm btn-success me-2" type="button">Login</a>
-      <a href="/auth/register" class="btn btn-sm btn-secondary" type="button">Register</a>
+      <a routerLink="/auth/login" class="btn btn-sm btn-success me-2" type="button">Login</a>
+      <a routerLink="/auth/register" class="btn btn-sm btn-secondary" type="button">Register</a>
     </div>
   </div>
 </nav>
