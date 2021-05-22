@@ -1,5 +1,6 @@
 const config = require("../helper/config");
 const firebase = require("firebase");
+const { setLocalStorage, getLocalStorage } = require("../helper/helper");
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config.firebase);
@@ -9,7 +10,7 @@ if (!firebase.apps.length) {
 
 // Pages
 exports.loginPage = (req, res) => {
-  res.render("login", { pageTitle: "Login" });
+  res.render("login", { pageTitle: "Login", error: null });
 };
 
 exports.registerPage = (req, res) => {
@@ -21,6 +22,14 @@ exports.forgotPasswordPage = (req, res) => {
 };
 
 // APIs
+exports.verifyUser = (req, res, next) => {
+  const user = getLocalStorage("user-data");
+  const token = user ? user.refreshToken : null;
+  console.log(req.url, "token", token);
+
+  next();
+};
+
 exports.login = (req, res) => {
   var userData = {};
 
@@ -29,17 +38,35 @@ exports.login = (req, res) => {
     .signInWithEmailAndPassword(req.body.email, req.body.password)
     .then((userCredential) => {
       // Signed in
-      // userData = { ...userCredential };
       userData = getUserData(userCredential);
       userData = formatResponse(userData, "User Logged in succesfully", true);
+      setLocalStorage(userData.data, "user-data");
 
-      res.json(data);
-      // res.render("home", { ...userData, pageTitle: "Home" });
+      let pb = [
+        {
+          name: "Google",
+          url: "",
+          password: "password@123",
+        },
+        {
+          name: "Microsoft",
+          url: "",
+          password: "abc@241",
+        },
+        {
+          name: "Opera",
+          url: "",
+          password: "Qwerty@324",
+        },
+      ];
+
+      // res.json(userData);
+      res.render("home", { user: userData, passbook: pb, pageTitle: "Home" });
     })
     .catch((error) => {
       userData = sendError(error);
-      res.status(400).send(userData);
-      // res.render("login", { ...data, pageTitle: "title" });
+      // res.status(400).send(userData);
+      res.render("login", { data: userData, pageTitle: "title" });
     });
 };
 
@@ -55,8 +82,9 @@ exports.registerUser = (req, res) => {
       data = { ...user, ...userCredential };
       data = formatResponse(data, "Account Created Successfully", true);
 
-      // call login method to login
-      res.json(data);
+      // res.json(data);
+      // display success message
+      res.redirect('/');
       // res.render("home", { ...data, pageTitle: "Home" });
     })
     .catch((error) => {
@@ -75,8 +103,8 @@ exports.resetPassword = (req, res) => {
     .then(function (d) {
       // Email sent.
       data = formatResponse(null, "Email sent", true);
-      res.send(data);
-      // res.render("login", { ...data, pageTitle: "Login" });
+      // res.send(data);
+      res.render("login", { data: data, pageTitle: "Login" });
     })
     .catch(function (error) {
       data = formatResponse(error, "Password reset failed", false);

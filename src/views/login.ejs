@@ -16,6 +16,11 @@
                     required>
                 <label for="password">Password</label>
             </div>
+            <% if(data && !data.status) {%>
+            <div class="alert alert-danger">
+                <%= data.message%>
+            </div>
+            <%}%>
             <button class="w-100 btn btn-sm btn-primary" type="submit">Sign in</button>
             <div class="my-2 p-1 auth-links">
                 <span class="float-start"><a class="text-decoration-none" href="/auth/forgot-password">Forgot

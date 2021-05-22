@@ -1,2 +1,7 @@
 # Dependencies
 node_modules
+firebase-debug.log
+.firebase
+
+# Local data
+localstorage

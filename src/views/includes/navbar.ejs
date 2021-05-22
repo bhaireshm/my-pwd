@@ -1,13 +1,16 @@
 <header>
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-light">
         <div class="container-fluid">
             <a href="/" class="navbar-brand">
                 <img src="/img/logo.png" alt="Logo" width="35px" height="35px">
             </a>
             <div class="d-flex">
-                <!-- <a href="javascript:void(0);"> <%= data.email %> </a> -->
+                <% if (user) { %>
+                <a href="#" class="btn btn-sm btn-success me-2" type="button"> <%= user.data.email %> </a>
+                <% } else { %>
                 <a href="/auth/login" class="btn btn-sm btn-success me-2" type="button">Login</a>
                 <a href="/auth/register" class="btn btn-sm btn-secondary" type="button">Register</a>
+                <% } %>
             </div>
         </div>
     </nav>

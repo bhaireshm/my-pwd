@@ -18,7 +18,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(mainRoutes);
 
 // Start server
-app.listen(
-  config.port,
-  log(`Application started listening to port ${config.port}`)
-);
+app.listen(config.port, () => {
+  log(`Application started listening to port ${config.port}`);
+
+  // clear localstorage
+  // const fs = require("fs"),
+  //   ls = path.join(__dirname, "localstorage");
+  // if (fs.existsSync(ls)) fs.rmdirSync(ls, { recursive: true });
+});
