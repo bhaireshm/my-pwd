@@ -3,26 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './modules/auth/home/home.component';
-import { LoginComponent } from './modules/auth/login/login.component';
-import { SignupComponent } from './modules/auth/signup/signup.component';
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { ForgotPasswordComponent } from './modules/auth/forgot-password/forgot-password.component';
+import { AuthModule } from './modules/auth/auth.module';
+import { HomeComponent } from './modules/shared/home/home.component';
+import { HeaderComponent } from './modules/shared/header/header.component';
+import { FooterComponent } from './modules/shared/footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    LoginComponent,
-    SignupComponent,
-    HeaderComponent,
-    FooterComponent,
-    NavbarComponent,
-    ForgotPasswordComponent,
-  ],
-  imports: [BrowserModule, AppRoutingModule],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, FooterComponent],
+  imports: [BrowserModule, AppRoutingModule, AuthModule],
   providers: [],
   bootstrap: [AppComponent],
 })
