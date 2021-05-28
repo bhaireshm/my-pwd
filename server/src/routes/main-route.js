@@ -10,6 +10,6 @@ router.get("/", verifyUser, homePage);
 router.get("/**", notFoundPage);
 
 // API
-router.use("/api", authRoutes.apiRouter);
+router.use("/api", verifyUser, authRoutes.apiRouter);
 
 module.exports = router;
