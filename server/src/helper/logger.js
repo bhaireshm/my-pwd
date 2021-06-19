@@ -5,7 +5,7 @@ const name = config.projectName;
 function log(msg, color, type = "LOG:") {
   msg = type === false ? "" + msg : type + " " + msg;
   color = color ? color : "yellow";
-  console.log(chalk.hex("#00bbff")(`[${name}] ` + `${chalk[color](msg)}`));
+  console.log(chalk.hex("#00bbff")(`[${name}] ` + `${chalk.yellow(msg)}`));
 }
 
 function readAllAPI(req, res, next) {
