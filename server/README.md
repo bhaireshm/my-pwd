@@ -10,3 +10,4 @@
 * On click of view ask for mpin(verified from db i.e by calling api) then show decrypted password
 * Enable to copy to the clipboard
 * Deploy in firebase to access publicly
+* https://keepassxc.org/project/
