@@ -7,10 +7,7 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   {
     path: 'auth',
-    loadChildren: () =>
-      import('../app/modules/auth/auth.module')
-        .then((m) => m.AuthModule)
-        .catch((e) => console.log(e)),
+    loadChildren: () => import('../app/modules/auth/auth.module').then((m) => m.AuthModule).catch((e) => console.log(e)),
   },
   {
     path: '**',
