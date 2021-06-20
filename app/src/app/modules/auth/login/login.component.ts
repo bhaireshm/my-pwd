@@ -12,11 +12,7 @@ export class LoginComponent implements OnInit {
 
   data = null;
 
-  constructor(
-    private fb: FormBuilder,
-    private helper: HelperService,
-    private authService: AuthService
-  ) {}
+  constructor(private fb: FormBuilder, private helper: HelperService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.helper.updateTitle('Login');

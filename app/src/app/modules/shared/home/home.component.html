@@ -1,37 +1,36 @@
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-6">
-        <div class="card my-4">
-          <div class="card-header">
-            <span class="float-end">
-              <i class="fa fa-refresh" aria-hidden="true"></i>
-            </span>
-          </div>
-          <div class="card-body">
-            <ul class="list-group list-group-flush">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <div class="card my-4">
+        <div class="card-header">
+          <span class="float-end">
+            <i class="fa fa-refresh" aria-hidden="true"></i>
+          </span>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li *ngIf="passbook.length == 0" class="list-group-item d-flex justify-content-between align-items-start">
+              No Password stored/found
+            </li>
 
-              <li *ngIf="passbook.length == 0" class="list-group-item d-flex justify-content-between align-items-start">
-                No Password stored/found
-              </li>
-
-              <li *ngFor="let pb of passbook" class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto">
-                  <div class="fw-bold">{{pb.name}}</div>
-                  {{pb.password}}
-                </div>
-                <div class="float-end mt-2">
-                  <button class="btn btn-sm btn-outline-secondary" type="button"><i class="fa fa-key"></i></button>
-                  <button class="btn btn-sm btn-outline-danger" type="button"><i class="fa fa-trash"></i></button>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <!-- <div class="card-footer">
+            <li *ngFor="let pb of passbook" class="list-group-item d-flex justify-content-between align-items-start">
+              <div class="ms-2 me-auto">
+                <div class="fw-bold">{{ pb.name }}</div>
+                {{ pb.password }}
+              </div>
+              <div class="float-end mt-2">
+                <button class="btn btn-sm btn-outline-secondary" type="button"><i class="fa fa-key"></i></button>
+                <button class="btn btn-sm btn-outline-danger" type="button"><i class="fa fa-trash"></i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- <div class="card-footer">
                         Card footer
                     </div> -->
-        </div>
       </div>
-      <div class="col-3"></div>
     </div>
+    <div class="col-3"></div>
   </div>
+</div>
