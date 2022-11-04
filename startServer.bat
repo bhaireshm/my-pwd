@@ -1,2 +1,2 @@
-CD D:\My-Codes\my-pwd\server
+CD server
 npm run nodemon
