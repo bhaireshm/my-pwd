@@ -1,6 +1,6 @@
 * Firebase db Custom password manager - use firebase as storage, encrypt data and store.
 * Add register: store user data in firebase :warning: (redirection pending)
-* Add Google signin option
+* Add Google signin option(https://github.com/googleworkspace/node-samples/blob/main/people/quickstart/index.js)
 * Add login: check from firebase,
 * Login reset password
 * Add saving passbook form

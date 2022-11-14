@@ -2,18 +2,22 @@ const chalk = require("chalk");
 const config = require("./config");
 const name = config.projectName;
 
-function log(msg, color, type = "LOG:") {
+function log(msg = "", color, type = "LOG:") {
   msg = type === false ? "" + msg : type + " " + msg;
   color = color ? color : "yellow";
-  console.log(chalk.hex("#00bbff")(`[${name}] ` + `${chalk.yellow(msg)}`));
+  console.log(chalk.hex(config.theme.primary)(`[${name}] ` + `${chalk[color](msg)}`));
 }
 
 function readAllAPI(req, res, next) {
-  console.log(
-    `${chalk.green(alignContent(req.method))} ` +
+  log("API triggered...")
+  const ignorePaths = ["android"];
+
+  if (!ignorePaths.some(i => i.search(req.url)))
+    log(
+      `${chalk.green(alignContent(req.method))} ` +
       `${chalk.green(res.statusCode)} ` +
       `${chalk.green(`${req.protocol}://${req.hostname}`)}${req.url}`
-  );
+    );
   next();
 }
 

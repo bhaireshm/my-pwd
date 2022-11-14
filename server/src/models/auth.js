@@ -45,4 +45,9 @@ module.exports = class Auth {
     //   }
     // );
   }
+
+  // Google Auth
+  googleSignIn() { }
+
+  googleSignUp() { }
 };
