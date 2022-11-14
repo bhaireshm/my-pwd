@@ -1,8 +1,8 @@
-const config = require("../helper/config");
+const config = require("@helper/config");
 const firebase = require("firebase");
-const { setLocalStorage, getLocalStorage } = require("../helper/helper");
+const { setLocalStorage, getLocalStorage } = require("@helper/helper");
 const { encrypt } = require("../services/encryption-service");
-const { log } = require("../helper/logger");
+const { log } = require("@helper/logger");
 const { getCities } = require("../services/firebasedb-service")
 
 if (!firebase.apps.length) {
@@ -58,8 +58,8 @@ exports.login = (req, res) => {
 
   // TODO: email, password required
 
-  const db = getFirestore(firebase);
-  getCities(db).then(console.log);
+  // const db = getFirestore(firebase);
+  // getCities(db).then(console.log);
 
   firebase
     .auth()

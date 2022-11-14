@@ -1,4 +1,4 @@
-const config = require("../helper/config");
+const config = require("@helper/config");
 const firebaseService = require("firebase");
 // import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 

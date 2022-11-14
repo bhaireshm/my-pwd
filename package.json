@@ -32,5 +32,16 @@
     "node-localstorage": "^2.1.6",
     "nodemon": "^2.0.7",
     "request": "^2.88.2"
-  }
+  },
+  "_moduleAliases": {
+    "@app": "./src/",
+    "@assets": "./src/assets/",
+    "@helper": "./src/helper/",
+    "@localstorage": "localstorage/",
+    "@logs": "logs/",
+    "@public": "public/"
+  },
+  "_moduleDirectories": [
+    "node_modules_custom"
+  ]
 }

@@ -1,4 +1,4 @@
-const { getLocalStorage } = require("../helper/helper");
+const { getLocalStorage } = require("@helper/helper");
 
 exports.homePage = (req, res) => {
   var user = getLocalStorage("user-data");
