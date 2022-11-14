@@ -1,2 +1,2 @@
-CD D:\My-Codes\my-pwd\app
+CD app
 npm start

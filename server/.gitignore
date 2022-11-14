@@ -2,6 +2,7 @@
 node_modules
 firebase-debug.log
 .firebase
+package-lock.json
 
 # Local data
 localstorage

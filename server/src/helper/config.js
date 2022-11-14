@@ -7,6 +7,9 @@ const config = {
   port: process.env.PORT || 3215,
   fbdburl: process.env.FB_URL,
   encryptionKey: encrypt(this.projectName),
+  theme: {
+    primary: "#00bbff"
+  },
 
   // For Firebase JavaScript SDK v7.20.0 and later, `measurementId` is an optional field
   firebase: {

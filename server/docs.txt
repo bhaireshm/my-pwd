@@ -32,3 +32,9 @@ function onSignIn(googleUser) {
     });
   }
 </script>
+
+# Session Implementation
+https://www.section.io/engineering-education/session-management-in-nodejs-using-expressjs-and-express-session/
+
+# Postman Docs
+https://documenter.getpostman.com/view/6552648/2s8YYPJ1RY#intro

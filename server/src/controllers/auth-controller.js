@@ -3,6 +3,7 @@ const firebase = require("firebase");
 const { setLocalStorage, getLocalStorage } = require("../helper/helper");
 const { encrypt } = require("../services/encryption-service");
 const { log } = require("../helper/logger");
+const { getCities } = require("../services/firebasedb-service")
 
 if (!firebase.apps.length) {
   firebase.initializeApp(config.firebase);
@@ -24,15 +25,16 @@ exports.forgotPasswordPage = (req, res) => {
 };
 
 // APIs
-exports.verifyUser = (req, res, next) => {
+exports.  verifyUser = (req, res, next) => {
   const user = getLocalStorage("user-data");
   const token = req.headers.authorization
     ? req.headers.authorization
     : user
-    ? user.refreshToken
-    : null;
+      ? user.refreshToken
+      : null;
 
-  log(req.url, "token", token);
+  console.log('token', token)
+  // log(req.url, "token");
 
   // if (token == "dummytoken") {
   res.header("Access-Control-Allow-Origin", "*");
@@ -53,6 +55,11 @@ exports.verifyUser = (req, res, next) => {
 
 exports.login = (req, res) => {
   var userData = {};
+
+  // TODO: email, password required
+
+  const db = getFirestore(firebase);
+  getCities(db).then(console.log);
 
   firebase
     .auth()
@@ -83,6 +90,7 @@ exports.login = (req, res) => {
         },
       ];
 
+      // res.redirect("/");
       res.send(userData);
 
       // res.send({
