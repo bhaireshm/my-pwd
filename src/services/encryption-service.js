@@ -1,4 +1,4 @@
-var CryptoJS = require("crypto-js");
+const CryptoJS = require("crypto-js");
 const secretKey = "secret key 123";
 
 exports.encrypt = (data) => {

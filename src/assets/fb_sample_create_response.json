@@ -1,0 +1,29 @@
+{
+    "status": true,
+    "data": {
+        "uid": "3OgWvpAaRgTptM2RlPDYpucixhn1",
+        "email": "admin@mailinator.com",
+        "emailVerified": false,
+        "isAnonymous": false,
+        "providerData": [
+            {
+                "providerId": "password",
+                "uid": "admin@mailinator.com",
+                "displayName": null,
+                "email": "admin@mailinator.com",
+                "phoneNumber": null,
+                "photoURL": null
+            }
+        ],
+        "stsTokenManager": {
+            "refreshToken": "APJWN8fD3fsnhKH2ladrGSwwXTkXyrr4fE9KaH5FnpFj3ZboJpvvtcwfctambl8zgZisCTZbwURfFoZzBHQ2YzvF1094Y1SpKQiFA7FB_9Q6oo8l9RG5TwUtEzIn0C5ExJmP1B2Pt6Bo-xgfXveW4MGSMcHOXA9TPU1Z2gBwi0La5E5zp4aGF5wKIDoOS7uwzyZSYHU72-NlXTtpoN0rO5vDDa7fu-cOtg",
+            "accessToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjVhNTA5ZjAxOWY3MGQ3NzlkODBmMTUyZDFhNWQzMzgxMWFiN2NlZjciLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcGFzc2Jvb2stMzIxNSIsImF1ZCI6InBhc3Nib29rLTMyMTUiLCJhdXRoX3RpbWUiOjE2NzU2MDkyMzMsInVzZXJfaWQiOiIzT2dXdnBBYVJnVHB0TTJSbFBEWXB1Y2l4aG4xIiwic3ViIjoiM09nV3ZwQWFSZ1RwdE0yUmxQRFlwdWNpeGhuMSIsImlhdCI6MTY3NTYwOTIzMywiZXhwIjoxNjc1NjEyODMzLCJlbWFpbCI6ImFkbWluQG1haWxpbmF0b3IuY29tIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJmaXJlYmFzZSI6eyJpZGVudGl0aWVzIjp7ImVtYWlsIjpbImFkbWluQG1haWxpbmF0b3IuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.i-PaPGnuLNZipyYeZ97dPx4s_JLz3C4S8bdiSzFm5jP6H3lkdBcWieUR5K4KHJNG8sehwkcjUlL5AhMaE-QWlb2cTf1jla6L9o3caBHlTMXa5I6asZKs2f1pHdM1HhNQKga0LeJze2cTNr3x6rtUtozMck_I3CfuAuMIyBQ6X6tXYmRMvsYYxcBmnEoazn9bidfDLOpmSxXW95jKX3M9d40T6SXc6jXUBxdqeQECTa9rPg-MeiPiU4z6j_3_TEjJ56PF77g3TqzmXU5eMVC0VWbjCA5wXeb-ubtXxdbO4jVub5uTVRxickuwRFvPH4ZaTXMpb6ZKnWsE-EV6TuAtzw",
+            "expirationTime": 1675612833206
+        },
+        "createdAt": "1675609232725",
+        "lastLoginAt": "1675609232725",
+        "apiKey": "AIzaSyCqwVJnRfRpTefnhcbOZDQog1Rkdsl2-_k",
+        "appName": "[DEFAULT]"
+    },
+    "message": "User Logged in succesfully"
+}

@@ -1,34 +1,34 @@
-const config = require("@helper/config");
-const firebaseService = require("firebase");
-// import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+const firebaseService = require("firebase/app");
+const firebaseAuthService = require("firebase/auth");
+const firebaseDB = require("firebase/database");
 
-// export interface AuthResponseData {
-//   idToken: string; //	A Firebase Auth ID token for the newly created user.
-//   email: string; //	The email for the newly created user.
-//   refreshToken: string; //	A Firebase Auth refresh token for the newly created user.
-//   expiresIn: string; //	The number of seconds in which the ID token expires.
-//   localId: string; //	The uid of the newly created user.
-//   registered?: boolean;
-// }
+const config = require("../helper/config");
 
-firebaseService.initializeApp(config.firebase);
+const firebase = {
+    firebaseApp: firebaseService.initializeApp(config.firebase),
+    firebaseAuth: firebaseAuthService,
+    firebaseUser: firebaseAuthService.currentUser,
+    firebaseDB,
+};
 
 
-// Get a list of cities from your database
-// async function getCities(db) {
-//     const citiesCol = collection(db, 'cities');
-//     const citySnapshot = await getDocs(citiesCol);
-//     const cityList = citySnapshot.docs.map(doc => doc.data());
-//     return cityList;
-// }
+firebase["fbdb"] = {
+    ref: function (...args) {
+        return firebaseDB.ref(firebaseDB.getDatabase(), ...args);
+    },
+    create: function (url, data) {
+        return firebaseDB.ref(firebaseDB.getDatabase(), url).set(data);
+    },
+    on: function (url, key, cb) {
+        firebase.firebaseApp.database().ref(url).on(key, (snapshot) => {
+            const data = snapshot.val();
+            if (cb) cb(data, snapshot);
+            else return data;
+        });
+    },
+    getAll: function (url) {
+        return firebaseDB.ref().child(url).get();
+    }
+}
 
-
-
-
-// Get a reference to the database service
-// var database = firebase.database();
-
-
-// module.exports = { getCities, firebaseService, app };
-module.exports = firebaseService;
-
+module.exports = firebase;

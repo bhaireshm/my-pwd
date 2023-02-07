@@ -1,9 +1,7 @@
 const { encrypt } = require("../services/encryption-service");
 
-const dotenv = require("dotenv").config();
-
 const config = {
-  projectName: process.env.PROJECT_NAME,
+  projectName: process.env.PROJECT_NAME, // * try this -> getEnv("PROJECT_NAME")
   port: process.env.PORT || 3215,
   fbdburl: process.env.FB_URL,
   encryptionKey: encrypt(this.projectName),

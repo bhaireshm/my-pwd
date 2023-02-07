@@ -1,15 +1,6 @@
-const config = require("@helper/config");
-const firebase = require("firebase");
-const { setLocalStorage, getLocalStorage } = require("@helper/helper");
-const { encrypt } = require("../services/encryption-service");
-const { log } = require("@helper/logger");
-const { getCities } = require("../services/firebasedb-service")
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(config.firebase);
-} else {
-  firebase.app(); // if already initialized, use that one
-}
+const { firebaseAuth, fbdb } = require("../services/firebasedb-service");
+const { setLocalStorage, getLocalStorage } = require("../helper");
+const { log } = require("../helper/logger");
 
 // Pages
 exports.loginPage = (req, res) => {
@@ -24,8 +15,25 @@ exports.forgotPasswordPage = (req, res) => {
   res.render("forgot-password", { pageTitle: "Reset Password" });
 };
 
+exports.users = (req, res) => {
+  console.log('req.params, req.query', req.params, req.query);
+
+  fbdb.getAll('users/').then((snapshot) => {
+    console.log('snapshot', snapshot);
+
+    if (snapshot.exists()) {
+      console.log(JSON.stringify(snapshot.val()));
+      res.status(200).json(formatResponse(snapshot.val()));
+    } else {
+      res.status(400).json(formatResponse(null, "No data available"));
+    }
+  }).catch((error) => {
+    res.status(500).json(formatResponse(error, "No data available"));
+  });
+};
+
 // APIs
-exports.  verifyUser = (req, res, next) => {
+exports.verifyUser = (req, res, next) => {
   const user = getLocalStorage("user-data");
   const token = req.headers.authorization
     ? req.headers.authorization
@@ -54,16 +62,11 @@ exports.  verifyUser = (req, res, next) => {
 };
 
 exports.login = (req, res) => {
-  var userData = {};
+  let userData = {};
 
-  // TODO: email, password required
+  log(JSON.stringify(req.body));
 
-  // const db = getFirestore(firebase);
-  // getCities(db).then(console.log);
-
-  firebase
-    .auth()
-    .signInWithEmailAndPassword(req.body.email, req.body.password)
+  firebaseAuth.createUserWithEmailAndPassword(firebaseAuth.getAuth(), req.body.email, req.body.password)
     .then((userCredential) => {
       // Signed in
       userData = userCredential.user;
@@ -71,6 +74,10 @@ exports.login = (req, res) => {
 
       userData = formatResponse(userData, "User Logged in succesfully", true);
       setLocalStorage(userData.data, "user-data");
+
+      fbdb.create("users/").set(userData);
+
+      // fbdb.on('', '', () => { })
 
       let pb = [
         {
@@ -108,13 +115,13 @@ exports.login = (req, res) => {
     .catch((error) => {
       userData = sendError(error);
       res.status(400).send(userData);
-      // res.render("login", { data: userData, pageTitle: "title" });
+      // * res.render("login", { data: userData, pageTitle: "title" });
     });
 };
 
 exports.registerUser = (req, res) => {
   const user = { ...req.body };
-  var data = {};
+  let data = {};
 
   firebase
     .auth()
@@ -136,7 +143,7 @@ exports.registerUser = (req, res) => {
 };
 
 exports.resetPassword = (req, res) => {
-  var emailAddress = req.body.email,
+  let emailAddress = req.body.email,
     data = {};
 
   firebase
@@ -171,7 +178,7 @@ function getUserData(userCredential) {
   return user;
 }
 
-function formatResponse(d, m, s) {
+function formatResponse(d, m, s = false) {
   return {
     status: s,
     data: d,

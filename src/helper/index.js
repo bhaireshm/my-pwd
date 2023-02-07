@@ -1,6 +1,7 @@
 const { encrypt, decrypt } = require("../services/encryption-service");
+const { log } = require("./logger");
 
-var localStorage;
+let localStorage;
 if (typeof localStorage === "undefined" || localStorage === null) {
   const LocalStorage = require("node-localstorage").LocalStorage;
   localStorage = new LocalStorage("./localstorage");
@@ -28,3 +29,9 @@ exports.getLocalStorage = (name) => {
   if (this.isEmpty(d)) return null;
   return JSON.parse(decrypt(d));
 };
+
+exports.getEnv = (key) => {
+  if (key && process.env[key]) return process.env[key];
+  log(`ENV: '${env}' required!!`);
+  throw new Error(`ENV: '${env}' required!!`);
+}

@@ -1,10 +1,9 @@
-require('module-alias/register');
 const express = require("express");
 const path = require("path");
 
-const mainRoutes = require("@app/routes/main-route");
-const config = require("@app/helper/config");
-const { log, readAllAPI } = require("@app/helper/logger");
+const mainRoutes = require("./src/routes/main-route");
+const config = require("./src/helper/config");
+const { log, readAllAPI } = require("./src/helper/logger");
 const session = require("express-session");
 const app = express();
 

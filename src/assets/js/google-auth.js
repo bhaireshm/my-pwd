@@ -1,7 +1,7 @@
 function googleSignIn() {
     console.log("googleSignIn....");
 
-    // var profile = googleUser.getBasicProfile();
+    // let profile = googleUser.getBasicProfile();
     // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     // console.log('Name: ' + profile.getName());
     // console.log('Image URL: ' + profile.getImageUrl());
@@ -9,7 +9,7 @@ function googleSignIn() {
 }
 
 function googleSignOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
+    let auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });

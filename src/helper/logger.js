@@ -9,7 +9,7 @@ function log(msg = "", color, type = "LOG:") {
 }
 
 function readAllAPI(req, res, next) {
-  log("API triggered...")
+  // log("API: " + req.url)
   const ignorePaths = ["android"];
 
   if (!ignorePaths.some(i => i.search(req.url)))

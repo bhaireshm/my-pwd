@@ -52,3 +52,6 @@ https://www.section.io/engineering-education/session-management-in-nodejs-using-
 
 # Postman Docs
 https://documenter.getpostman.com/view/6552648/2s8YYPJ1RY#intro
+
+# Google 2FA authentication
+https://blog.shahednasser.com/how-to-add-authentication-with-google-authenticator-in-node-js/

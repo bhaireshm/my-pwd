@@ -1,7 +1,7 @@
-const { getLocalStorage } = require("@helper/helper");
+const { getLocalStorage } = require("../helper");
 
 exports.homePage = (req, res) => {
-  var user = getLocalStorage("user-data");
+  let user = getLocalStorage("user-data");
   user = user ? user : null;
   res.render("home", { pageTitle: "Home", passbook: [], user: user });
 };

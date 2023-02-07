@@ -1,6 +1,6 @@
 const { encrypt } = require("../services/encryption-service");
 const request = require("request");
-const config = require("@helper/config");
+const config = require("./src/helper/config");
 module.exports = class Auth {
   constructor(user) {
     this.user = user;
@@ -14,7 +14,6 @@ module.exports = class Auth {
   register() {
     this.user.password = encrypt(this.user.password);
     this.user.mpin = encrypt(this.user.mpin);
-    const config = require("@helper/config");
     const firebase = require("firebase");
 
     if (!firebase.apps.length) {
@@ -31,7 +30,7 @@ module.exports = class Auth {
         return { ...this.user, ...userCredential };
       })
       .catch((error) => {
-        var errorMessage = { status: error.code, message: error.message };
+        let errorMessage = { status: error.code, message: error.message };
         return { ...this.user, ...errorMessage };
       });
 
