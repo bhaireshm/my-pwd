@@ -35,3 +35,19 @@ exports.getEnv = (key) => {
   log(`ENV: '${env}' required!!`);
   throw new Error(`ENV: '${env}' required!!`);
 }
+
+function getValue(obj, key) {
+  let d;
+
+  const arrayCheck = (arr) => !d && arr.forEach(([k, v]) => {
+    if (typeof v === 'object') d = getValue(v, k);
+    if (Array.isArray(v)) arrayCheck(v);
+    if (k == key) d = v;
+  });
+
+  arrayCheck(Object.entries(obj));
+
+  return d;
+}
+
+module.exports = { getValue };

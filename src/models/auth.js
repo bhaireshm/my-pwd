@@ -1,5 +1,5 @@
+const { firebaseAuth } = require("../services/firebasedb-service");
 const { encrypt } = require("../services/encryption-service");
-const request = require("request");
 const config = require("./src/helper/config");
 module.exports = class Auth {
   constructor(user) {
@@ -22,8 +22,7 @@ module.exports = class Auth {
       firebase.app(); // if already initialized, use that one
     }
 
-    firebase
-      .auth()
+    firebaseAuth
       .createUserWithEmailAndPassword(this.user.email, this.user.password)
       .then((userCredential) => {
         // Signed in

@@ -11,7 +11,6 @@ const firebase = {
     firebaseDB,
 };
 
-
 firebase["fbdb"] = {
     ref: function (...args) {
         return firebaseDB.ref(firebaseDB.getDatabase(), ...args);

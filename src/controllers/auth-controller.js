@@ -32,6 +32,8 @@ exports.users = (req, res) => {
   });
 };
 
+
+// TODO: uncomment below codes to check token
 // APIs
 exports.verifyUser = (req, res, next) => {
   const user = getLocalStorage("user-data");
@@ -66,18 +68,19 @@ exports.login = (req, res) => {
 
   log(JSON.stringify(req.body));
 
-  firebaseAuth.createUserWithEmailAndPassword(firebaseAuth.getAuth(), req.body.email, req.body.password)
+  // * All the validation checks to be handled here.`
+  // ! validation pending...
+
+  // * Move the below codes to Auth class and initiate class to login.
+
+  firebaseAuth.signInWithEmailAndPassword(firebaseAuth.getAuth(), req.body.email, req.body.password)
     .then((userCredential) => {
-      // Signed in
+      // * Signed in user's data stored in session for further use.
       userData = userCredential.user;
       req.session.user = userData;
 
       userData = formatResponse(userData, "User Logged in succesfully", true);
       setLocalStorage(userData.data, "user-data");
-
-      fbdb.create("users/").set(userData);
-
-      // fbdb.on('', '', () => { })
 
       let pb = [
         {
@@ -98,18 +101,18 @@ exports.login = (req, res) => {
       ];
 
       // res.redirect("/");
-      res.send(userData);
+      // res.send(userData);
 
-      // res.send({
-      //   uid: userData.uid,
-      //   email: userData.email,
-      //   refreshToken: userData.refreshToken,
-      //   displayName: userData.displayName,
-      //   emailVerified: userData.emailVerified,
-      //   lastLoginAt: userData.metadata.lastSignInTime,
-      //   token: userData.stsTokenManager.accessToken,
-      //   expirationTime: userData.stsTokenManager.expirationTime,
-      // });
+      res.send({
+        uid: userData.uid,
+        email: userData.email,
+        refreshToken: userData.refreshToken,
+        displayName: userData.displayName,
+        emailVerified: userData.emailVerified,
+        lastLoginAt: userData.metadata.lastSignInTime,
+        token: userData.stsTokenManager.accessToken,
+        expirationTime: userData.stsTokenManager.expirationTime,
+      });
       // res.render("home", { user: userData, passbook: pb, pageTitle: "Home" });
     })
     .catch((error) => {
@@ -123,18 +126,22 @@ exports.registerUser = (req, res) => {
   const user = { ...req.body };
   let data = {};
 
-  firebase
-    .auth()
-    .createUserWithEmailAndPassword(user.email, user.password)
+  firebaseAuth
+    .createUserWithEmailAndPassword(firebaseAuth.getAuth(), user.email, user.password)
     .then((userCredential) => {
-      // Registered and Signed in
+      // * Registered and Signed in
       data = { ...user, ...userCredential };
       data = formatResponse(data, "Account Created Successfully", true);
 
-      // res.json(data);
-      // display success message
-      res.redirect("/");
-      // res.render("home", { ...data, pageTitle: "Home" });
+      // * Signed in
+      req.session.user = data;
+      setLocalStorage(data, "user-data");
+
+      // * Save user data in firebase database
+      fbdb.create("users/").set(userData);
+
+      // res.redirect("/");
+      res.render("home", { ...data, pageTitle: "Home" });
     })
     .catch((error) => {
       data = sendError(error);
